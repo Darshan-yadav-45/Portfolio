@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARSHAN K M - Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="scroll-container">
+        <canvas id="hero-lightpass"></canvas>
+    </div>
+
+    <main class="content-overlay">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo">DARSHAN K M</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html" class="">About</a>
+                <a href="skills.html" class="">Skills</a>
+                <a href="projects.html" class="">Projects</a>
+                <a href="education.html" class="">Education</a>
+                <a href="contact.html" class="">Contact</a>
+            </div>
+
+            <!-- Dynamic Login / Logout Button (Uses your existing btn-primary class) -->
+            <button id="auth-btn" class="btn-primary"
+                style="display: flex; align-items: center; gap: 8px; border: none; font-family: inherit; cursor: pointer; font-size: 14px;">
+                <span id="auth-text">Login</span>
+                <svg id="auth-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                    <polyline points="10 17 15 12 10 7"></polyline>
+                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg-text">
+                DARSHAN K M
+            </div>
+            <div class="hero-content">
+                <div class="hero-left">
+                    <p class="subtitle">Hi, I am</p>
+                    <div class="spacer-huge"></div>
+                    <div class="hero-text-bottom">
+                        <div class="trusted-badge">✦ Trusted by 200+ clients</div>
+                        <h1>Websites that turn<br>visitors into clients</h1>
+                        <div class="hero-actions">
+                            <a href="project-request.html" onclick="if(!localStorage.getItem('user_token')){ window.location.href='login.html'; return false; }" class="btn-primary">Start a Project ↗</a>
+                            <a href="projects.html" class="btn-text">View My Works ↘</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="stats-card glass">
+                        <div class="avatars">
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                            <div class="avatar"></div>
+                        </div>
+                        <p>99.6% Of My Clients Are Satisfied<br>— Be One Of Them Today.</p>
+                        <div class="tags">
+                            <span class="tag">Free Consultation</span>
+                            <span class="tag">24h Response</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Profile Section -->
+        <section class="system-profile-section">
+            <div class="system-profile-content">
+                <!-- Left Side: Profile Card -->
+                <div class="sp-left">
+                    <div class="sp-image-container">
+                        <img src="/public/images/About.jpg"
+                            alt="Profile Photo" class="sp-image">
+                        <div class="sp-status">
+                            <span style="display: flex; align-items: center; gap: 0.5rem;"><span
+                                    class="status-dot green"></span> OPEN TO OPPORTUNITIES</span>
+                            <span class="status-year">2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Profile Details -->
+                <div class="sp-right">
+                    <div class="sp-badge">
+                        <span class="status-dot white"></span> // SYSTEM PROFILE
+                    </div>
+                    <h2 class="sp-title">Hello, I'm<br>DARSHAN K M</h2>
+                    <p class="sp-description">
+                        A passionate Full-Stack Developer dedicated to crafting clean, functional, and highly scalable
+                        web applications. Specializing in high-performance architectures, intuitive user experiences,
+                        and robust backend pipelines.
+                    </p>
+                    <div class="sp-skills">
+                        <div class="sp-skill-card">
+                            <h4>Full-Stack</h4>
+                            <span>ARCHITECTURE</span>
+                        </div>
+                        <div class="sp-skill-card">
+                            <h4>React & Node</h4>
+                            <span>CORE TECH</span>
+                        </div>
+                        <div class="sp-skill-card">
+                            <h4>Scalable</h4>
+                            <span>SYSTEMS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Technical Stack Section -->
+        <section class="tech-stack-section">
+            <div class="tech-stack-header">
+                <div class="tech-stack-badge">
+                    <span class="star">✦</span> TECHNICAL STACK
+                </div>
+                <h2>Technologies I Work With</h2>
+                <p>Full-stack expertise across modern web development, artificial intelligence, and cloud
+                    infrastructure.</p>
+            </div>
+
+            <div class="tech-stack-tags">
+                <div class="tech-tags-row">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express.js</span>
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">REST APIs</span>
+                    <span class="tech-tag">JWT Auth</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">MongoDB</span>
+                </div>
+                <div class="tech-tags-row" style="margin-left: 2rem;">
+                    <span class="tech-tag">Generative AI</span>
+                    <span class="tech-tag">LLMs</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Prompt Engineering</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Cloud Architectures</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects Slider -->
+        <section class="featured-projects">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <div class="subtitle"><span class="star">✦</span> Featured Work</div>
+                <h2 style="font-family: 'Anton', sans-serif; font-size: 3rem; margin-top: 0.5rem;">Selected Projects
+                </h2>
+            </div>
+
+            <div class="projects-slider-container">
+                <div class="slider-track" id="projects-slider-track">
+                    <!-- Projects will be injected here dynamically via script.js -->
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-socials" style="display: flex; gap: 24px; margin-bottom: 20px;">
+                    <!-- GitHub Logo -->
+                    <a href="YOUR_GITHUB_LINK" target="_blank" rel="noopener noreferrer" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4">
+                            </path>
+                            <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                        </svg>
+                    </a>
+
+                    <!-- LinkedIn Logo -->
+                    <a href="YOUR_LINKEDIN_LINK" target="_blank" rel="noopener noreferrer" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+
+                    <!-- Instagram Logo -->
+                    <a href="YOUR_INSTAGRAM_LINK" target="_blank" rel="noopener noreferrer" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+
+                    <!-- Twitter/X Logo -->
+                    <a href="YOUR_X_PROFILE_LINK" target="_blank" rel="noopener noreferrer" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                        </svg>
+                    </a>
+
+                    <!-- Email Logo -->
+                    <a href="mailto:darshan.km.091@gmail.com" class="social-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                    </a>
+                </div>
+                <p>&copy; 2026 DARSHAN K M. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="/js/script.js?v=3"></script>
+</body>
+
+</html>

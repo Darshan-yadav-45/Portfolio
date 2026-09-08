@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - DARSHAN K M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body {
+            background-image: url('/public/images/login.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .auth-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            max-width: 400px;
+            margin: 4rem auto;
+            text-align: center;
+        }
+        .auth-container h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border);
+            color: white;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .auth-form button {
+            width: 100%;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .auth-links {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .auth-links a {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        #register-error {
+            color: #e53935;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        #register-success {
+            color: #4caf50;
+            margin-bottom: 1rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <canvas id="hero-lightpass"></canvas>
+    </div>
+
+    <main class="content-overlay">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">DARSHAN K M</a></div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html">Skills</a>
+                <a href="projects.html">Projects</a>
+                <a href="education.html">Education</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            
+            <button id="auth-btn" class="btn-primary" style="display: flex; align-items: center; gap: 8px; border: none; font-family: inherit; cursor: pointer; font-size: 14px;">
+                <span id="auth-text"> Login</span>
+            </button>
+        </nav>
+
+        <section class="auth-section">
+            <div class="auth-container">
+                <h2>Create Account</h2>
+                <p id="register-error">Error creating account.</p>
+                <p id="register-success">Account created! Redirecting to login...</p>
+                <form id="register-form" class="auth-form">
+                    <input type="text" id="fullname" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </form>
+                <div class="auth-links">
+                    Already have an account? <a href="login.html">Login here</a>.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const registerForm = document.getElementById('register-form');
+            const registerError = document.getElementById('register-error');
+            const registerSuccess = document.getElementById('register-success');
+
+            // If already logged in, redirect to contact
+            if (localStorage.getItem('user_token')) {
+                window.location.href = 'contact.html';
+            }
+
+            registerForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const fullname = document.getElementById('fullname').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+                if (password !== confirmPassword) {
+                    registerError.textContent = 'Passwords do not match.';
+                    registerError.style.display = 'block';
+                    return;
+                }
+
+                try {
+                    const res = await fetch('/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ 
+                            username: email, // use email as username for auth compatibility
+                            password: password,
+                            fullname: fullname,
+                            email: email,
+                            phone: phone
+                        })
+                    });
+
+                    if (res.ok) {
+                        registerError.style.display = 'none';
+                        registerSuccess.style.display = 'block';
+                        setTimeout(() => {
+                            window.location.href = 'login.html';
+                        }, 1500);
+                    } else {
+                        const data = await res.json();
+                        registerError.textContent = data.detail || 'Registration failed.';
+                        registerError.style.display = 'block';
+                    }
+                } catch (err) {
+                    console.error(err);
+                    registerError.textContent = 'Server error. Please try again later.';
+                    registerError.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

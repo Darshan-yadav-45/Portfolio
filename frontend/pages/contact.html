@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - DARSHAN K M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .contact-container {
+            background: var(--glass-bg, rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 800px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 2rem;
+                gap: 2.5rem;
+            }
+        }
+
+        .contact-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-label {
+            color: #4a8bfa;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-label::after {
+            content: '';
+            display: inline-block;
+            width: 1px;
+            height: 16px;
+            background-color: #4a8bfa;
+            margin-left: 8px;
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .contact-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-desc {
+            color: #a0a5b8;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .contact-email {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #4a8bfa;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 1.05rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            justify-content: center;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                flex-direction: column;
+            }
+        }
+
+        .contact-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.1));
+            color: white;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .contact-input:focus {
+            outline: none;
+            border-color: var(--primary, #4a8bfa);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .contact-input::placeholder {
+            color: #5a6078;
+        }
+
+        .btn-submit {
+            background: var(--primary, #4a8bfa);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+            transition: opacity 0.3s, transform 0.2s;
+            font-family: inherit;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <canvas id="hero-lightpass"></canvas>
+    </div>
+
+    <main class="content-overlay">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="logo"><a href="index.html">DARSHAN K M</a></div>
+            <div class="nav-links">
+                <a href="index.html" class="">Home</a>
+                <a href="about.html" class="">About</a>
+                <a href="skills.html" class="">Skills</a>
+                <a href="projects.html" class="">Projects</a>
+                <a href="education.html" class="">Education</a>
+                <a href="contact.html" class="active">Contact</a>
+            </div>
+            
+            <button id="auth-btn" class="btn-primary" style="display: flex; align-items: center; gap: 8px; border: none; font-family: inherit; cursor: pointer; font-size: 14px;">
+                <span id="auth-text"> Login</span>
+                <svg id="auth-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                    <polyline points="10 17 15 12 10 7"></polyline>
+                    <line x1="15" y1="12" x2="3" y2="12"></line>
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Contact Section -->
+        <section style="margin-top: 4rem; padding: 2rem 1rem; min-height: 70vh; display: flex; align-items: center; justify-content: center; position: relative; z-index: 2;">
+            <div class="contact-container">
+                <div class="contact-left">
+                    <div class="contact-label">GET IN TOUCH</div>
+                    <h2 class="contact-title">Let's build<br>something.</h2>
+                    <p class="contact-desc">Open to software developer, full-stack, backend, and data roles. Reach out and I'll get back to you soon.</p>
+                    <a href="mailto:darshan.km.091@gmail.com" class="contact-email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        darshan.km.091@gmail.com
+                    </a>
+                </div>
+                <div class="contact-right">
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <input type="text" class="contact-input" id="contact-name" placeholder="Name" required>
+                            <input type="email" class="contact-input" id="contact-email" placeholder="Email" required>
+                        </div>
+                        <input type="text" class="contact-input" id="contact-subject" placeholder="Subject">
+                        <textarea rows="6" class="contact-input" id="contact-message" placeholder="Message" required style="resize: vertical;"></textarea>
+                        
+                        <div id="form-status" style="display: none; padding: 1rem; border-radius: 8px; font-weight: 500; font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.5;"></div>
+
+                        <button type="submit" class="btn-submit" id="submit-btn">
+                            <span id="submit-text">Send Message</span>
+                            <svg id="submit-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <div class="spacer-bottom"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-socials" style="display: flex; gap: 24px; margin-bottom: 20px;">
+                    <a href="YOUR_GITHUB_LINK" target="_blank" rel="noopener noreferrer" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+                    <a href="YOUR_LINKEDIN_LINK" target="_blank" rel="noopener noreferrer" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                    <a href="YOUR_INSTAGRAM_LINK" target="_blank" rel="noopener noreferrer" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+                    <a href="YOUR_X_PROFILE_LINK" target="_blank" rel="noopener noreferrer" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg></a>
+                    <a href="mailto:darshan.km.091@gmail.com" class="social-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></a>
+                </div>
+                <p>&copy; 2026 DARSHAN K M. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script src="/js/script.js?v=3"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            const statusBox = document.getElementById('form-status');
+            const submitBtn = document.getElementById('submit-btn');
+            const submitText = document.getElementById('submit-text');
+            const submitIcon = document.getElementById('submit-icon');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Reset status box
+                statusBox.style.display = 'none';
+                statusBox.className = '';
+                
+                // Get values
+                const name = document.getElementById('contact-name').value.trim();
+                const email = document.getElementById('contact-email').value.trim();
+                const subject = document.getElementById('contact-subject').value.trim();
+                const message = document.getElementById('contact-message').value.trim();
+
+                // Frontend validation
+                if (!name || !email || !message) {
+                    showStatus('Please fill in all required fields.', 'error');
+                    return;
+                }
+
+                // UI Loading state
+                submitBtn.disabled = true;
+                submitText.textContent = 'Sending...';
+                submitBtn.style.opacity = '0.7';
+
+                try {
+                    const response = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name, email, subject, message })
+                    });
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.error || 'Something went wrong. Please check your internet connection and try again.');
+                    }
+
+                    // Success
+                    showStatus('<strong>Message Sent Successfully! 🎉</strong>', 'success');
+                    form.reset();
+
+                } catch (error) {
+                    // It can be a network error or a specific API error
+                    let errorMsg = error.message;
+                    if (errorMsg === 'Failed to fetch') {
+                        errorMsg = 'Something went wrong. Please check your internet connection and try again.';
+                    }
+                    showStatus(errorMsg, 'error');
+                } finally {
+                    // Restore UI state
+                    submitBtn.disabled = false;
+                    submitText.textContent = 'Send Message';
+                    submitBtn.style.opacity = '1';
+                }
+            });
+
+            function showStatus(msg, type) {
+                statusBox.innerHTML = msg;
+                statusBox.style.display = 'block';
+                if (type === 'success') {
+                    statusBox.style.backgroundColor = 'rgba(74, 222, 128, 0.1)';
+                    statusBox.style.color = '#4ade80';
+                    statusBox.style.border = '1px solid rgba(74, 222, 128, 0.2)';
+                } else {
+                    statusBox.style.backgroundColor = 'rgba(248, 113, 113, 0.1)';
+                    statusBox.style.color = '#f87171';
+                    statusBox.style.border = '1px solid rgba(248, 113, 113, 0.2)';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

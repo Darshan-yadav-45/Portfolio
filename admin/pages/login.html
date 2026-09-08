@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - DARSHAN K M</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: var(--bg-main);">
+    
+    <div class="glass" style="padding: 2.5rem; max-width: 400px; width: 100%; border-radius: 16px;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div class="logo" style="margin-bottom: 1rem;">DARSHAN K M</div>
+            <h2 style="font-family: 'Anton', sans-serif; letter-spacing: 1px;">ADMIN PORTAL</h2>
+        </div>
+        
+        <form id="admin-login-form">
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Username</label>
+                <input type="text" id="username" required 
+                    style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5); color: white; font-family: inherit;">
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">Password</label>
+                <input type="password" id="password" required 
+                    style="width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.5); color: white; font-family: inherit;">
+            </div>
+            
+            <div id="login-error" style="color: #ff4b4b; font-size: 0.9rem; margin-bottom: 1rem; text-align: center; display: none;"></div>
+            
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Login</button>
+        </form>
+    </div>
+
+    <script src="/admin/js/admin.js"></script>
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', handleLogin);
+        
+        // Redirect if already logged in
+        if (localStorage.getItem('admin_token')) {
+            window.location.href = '/admin/dashboard';
+        }
+    </script>
+</body>
+</html>
