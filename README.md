@@ -55,15 +55,7 @@ docker-compose up --build -d
 Once the containers are running, you can access the application at:
 
 - **Public Portfolio:** [http://localhost:8080/](http://localhost:8080/)
-- **Admin Login Portal:** [http://localhost:8080/admin/login](http://localhost:8080/admin/login)
-- **Admin Dashboard:** [http://localhost:8080/admin/dashboard](http://localhost:8080/admin/dashboard)
 
-### 🔑 Default Admin Credentials
-When the database spins up for the first time, it automatically creates a default administrator account.
-- **Username:** `admin`
-- **Password:** `password123`
-
-*(Note: In a production environment, immediately log into your database and change this password!)*
 
 ## ⚙️ Environment Variables
 An `.env.example` file is included in the root directory. You can create an `.env` file to customize:
