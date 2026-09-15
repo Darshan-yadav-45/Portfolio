@@ -1,7 +1,7 @@
 [build]
   base = "."
-  publish = "."
-  command = "echo 'No build required'"
+  publish = "dist"
+  command = "mkdir -p dist && cp -r frontend dist/ && cp -r admin dist/"
 
 [[redirects]]
   from = "/"
