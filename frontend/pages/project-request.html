@@ -15,11 +15,13 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            min-height: 100vh;
         }
         .scroll-container {
             display: none;
         }
         .form-container {
+            width: 90%;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -186,7 +188,7 @@
                 const budget = document.getElementById('budget').value;
 
                 try {
-                    const res = await fetch('/api/project-requests', {
+                    const res = await fetch((window.API_BASE || '/api') + '/project-requests', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
