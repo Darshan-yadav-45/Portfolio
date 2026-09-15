@@ -15,8 +15,10 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            min-height: 100vh;
         }
         .auth-container {
+            width: 90%;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -144,7 +146,7 @@
                 }
 
                 try {
-                    const res = await fetch('/api/register', {
+                    const res = await fetch((window.API_BASE || '/api') + '/register', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

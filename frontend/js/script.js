@@ -203,11 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================= */
 document.addEventListener('DOMContentLoaded', async () => {
     // Determine the API base URL (can be updated for production)
-    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? (window.location.port === '80' || window.location.port === '8080' ? '/api' : 'http://localhost:8000/api') : '/api';
+    window.API_BASE = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') 
+        ? 'http://localhost:8000/api' 
+        : 'https://portfoliobackend-1rcb.onrender.com/api';
 
     // 1. Fetch and render Skills
     try {
-        const skillsRes = await fetch(`${API_BASE}/skills`);
+        const skillsRes = await fetch(`${window.API_BASE}/skills`);
         if (skillsRes.ok) {
             const skills = await skillsRes.json();
             const skillsContainer = document.getElementById('skills');
@@ -227,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 2. Fetch and render Projects (for projects.html and index.html slider)
     try {
-        const projectsRes = await fetch(`${API_BASE}/projects`);
+        const projectsRes = await fetch(`${window.API_BASE}/projects`);
         if (projectsRes.ok) {
             const projects = await projectsRes.json();
             
@@ -358,7 +360,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 3. Fetch and render Education
     try {
-        const eduRes = await fetch(`${API_BASE}/education`);
+        const eduRes = await fetch(`${window.API_BASE}/education`);
         if (eduRes.ok) {
             const education = await eduRes.json();
             const eduContainer = document.getElementById('education-container');

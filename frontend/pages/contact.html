@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <style>
         .contact-container {
+            width: 100%;
             background: var(--glass-bg, rgba(255, 255, 255, 0.05));
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
@@ -266,7 +267,7 @@
                 submitBtn.style.opacity = '0.7';
 
                 try {
-                    const response = await fetch('/api/contact', {
+                    const response = await fetch((window.API_BASE || '/api') + '/contact', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

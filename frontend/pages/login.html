@@ -15,11 +15,13 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            min-height: 100vh;
         }
         .scroll-container {
             display: none;
         }
         .auth-container {
+            width: 90%;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
@@ -128,7 +130,7 @@
                 const password = document.getElementById('password').value;
 
                 try {
-                    const res = await fetch('/api/login', {
+                    const res = await fetch((window.API_BASE || '/api') + '/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
