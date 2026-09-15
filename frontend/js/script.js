@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ========================================= */
 document.addEventListener('DOMContentLoaded', async () => {
     // Determine the API base URL (can be updated for production)
-    const API_BASE = 'http://localhost:8000/api';
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? (window.location.port === '80' || window.location.port === '8080' ? '/api' : 'http://localhost:8000/api') : '/api';
 
     // 1. Fetch and render Skills
     try {

@@ -48,6 +48,6 @@ app.use('/api/admin/messages', authenticateToken, adminMessageRoutes);
 // Init DB
 db.initDB();
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Backend server running on port ${PORT}`);
 });

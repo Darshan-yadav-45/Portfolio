@@ -167,7 +167,8 @@
 
             try {
                 // Fetch all projects (or specific one if backend supported GET /projects/id)
-                const res = await fetch('http://localhost:8000/api/projects');
+                const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? (window.location.port === '80' || window.location.port === '8080' ? '/api' : 'http://localhost:8000/api') : '/api';
+                const res = await fetch(`${API_BASE}/projects`);
                 if (res.ok) {
                     const projects = await res.json();
                     const project = projects.find(p => p.id == projectId);
@@ -176,7 +177,7 @@
                         const tagsArray = project.tags.split(',').map(t => t.trim());
                         const tagsHtml = tagsArray.map(tag => `<span class="tag">${tag}</span>`).join('');
                         
-                        let imgUrl = project.image_url ? `http://localhost:8000${project.image_url}` : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085';
+                        let imgUrl = project.image_url ? `${project.image_url}` : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085';
 
                         let metaHtml = '';
                         if (project.github_link) {
