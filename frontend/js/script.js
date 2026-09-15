@@ -3,6 +3,9 @@ const canvas = document.getElementById("hero-lightpass");
 const context = canvas.getContext("2d");
 
 const frameCount = 239;
+const isMobile = window.innerWidth <= 768;
+const frameStep = isMobile ? 3 : 1; // Load fewer frames on mobile to prevent crashes
+
 const currentFrame = index => (
   `/public/frames/frame_${String(index).padStart(6, '0')}.jpg`
 );
@@ -68,6 +71,12 @@ let preloadIndex = 0;
 function preloadNext() {
   if (preloadIndex > frameCount) return;
 
+  if (preloadIndex % frameStep !== 0) {
+    preloadIndex++;
+    preloadNext();
+    return;
+  }
+
   const img = images[preloadIndex];
 
   if (img.src) {
@@ -109,7 +118,9 @@ window.addEventListener('scroll', () => {
     Math.max(0, Math.floor(scrollFraction * frameCount))
   );
 
-  requestAnimationFrame(() => updateImage(frameIndex));
+  const snappedIndex = Math.floor(frameIndex / frameStep) * frameStep;
+
+  requestAnimationFrame(() => updateImage(snappedIndex));
 });
 
 window.addEventListener('resize', () => {
@@ -121,7 +132,9 @@ window.addEventListener('resize', () => {
     frameCount,
     Math.max(0, Math.floor(scrollFraction * frameCount))
   );
-  updateImage(frameIndex);
+  
+  const snappedIndex = Math.floor(frameIndex / frameStep) * frameStep;
+  updateImage(snappedIndex);
 });
 
 /* =========================================
