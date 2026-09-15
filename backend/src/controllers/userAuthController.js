@@ -35,12 +35,30 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     
     try {
+        // 1. Check if it's the Admin
+        const adminEmail = process.env.ADMIN_EMAIL;
+        const adminPasswordHash = process.env.ADMIN_PASSWORD_HASH;
+        
+        if (adminEmail && email === adminEmail) {
+            if (adminPasswordHash && await bcrypt.compare(password, adminPasswordHash)) {
+                const token = jwt.sign({ email: adminEmail, role: 'admin' }, SECRET_KEY, { expiresIn: '24h' });
+                return res.json({ token, user: { email: adminEmail, role: 'admin' } });
+            } else {
+                return res.status(401).json({ detail: 'Invalid email or password.' });
+            }
+        }
+
+        // 2. Fallback to users table
         const result = await db.query('SELECT * FROM users WHERE email = $1', [email]);
         const user = result.rows[0];
         
-        if (user && await bcrypt.compare(password, user.password_hash)) {
-            const token = jwt.sign({ id: user.id, email: user.email, role: 'user' }, SECRET_KEY, { expiresIn: '24h' });
-            res.json({ token, user: { id: user.id, fullname: user.fullname, email: user.email } });
+        if (!user) {
+            return res.status(404).json({ detail: 'Account not found. Please register first.' });
+        }
+        
+        if (await bcrypt.compare(password, user.password_hash)) {
+            const token = jwt.sign({ id: user.id, email: user.email, role: user.role || 'user' }, SECRET_KEY, { expiresIn: '24h' });
+            res.json({ token, user: { id: user.id, fullname: user.fullname, email: user.email, role: user.role || 'user' } });
         } else {
             res.status(401).json({ detail: 'Invalid email or password.' });
         }

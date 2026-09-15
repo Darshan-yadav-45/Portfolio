@@ -160,6 +160,7 @@
 
                     if (res.ok) {
                         registerError.style.display = 'none';
+                        registerSuccess.textContent = 'Account created successfully. Please log in.';
                         registerSuccess.style.display = 'block';
                         setTimeout(() => {
                             window.location.href = 'login.html';

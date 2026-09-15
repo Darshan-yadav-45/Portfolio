@@ -138,10 +138,18 @@
 
                     if (res.ok) {
                         const data = await res.json();
-                        localStorage.setItem('user_token', data.token);
-                        localStorage.setItem('username', username);
-                        window.location.href = 'contact.html';
+                        localStorage.setItem('role', data.user.role);
+                        if (data.user.role === 'admin') {
+                            localStorage.setItem('admin_token', data.token);
+                            window.location.href = '/admin/pages/dashboard.html';
+                        } else {
+                            localStorage.setItem('user_token', data.token);
+                            localStorage.setItem('username', username);
+                            window.location.href = 'contact.html';
+                        }
                     } else {
+                        const data = await res.json();
+                        loginError.textContent = data.detail || 'Invalid email or password.';
                         loginError.style.display = 'block';
                     }
                 } catch (err) {

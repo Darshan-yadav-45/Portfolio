@@ -168,7 +168,7 @@
     <script>
         // Check Auth
         if (!localStorage.getItem('admin_token')) {
-            window.location.href = '/admin/login';
+            window.location.href = '/frontend/pages/login.html';
         } else {
             fetchAdminProjects();
         }

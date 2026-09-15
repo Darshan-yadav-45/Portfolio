@@ -11,14 +11,7 @@ const initDB = async (retries = 10, delay = 2000) => {
             await pool.query('SELECT 1'); // Simple connection test
             console.log('Successfully connected to database.');
             
-            await pool.query(`
-                CREATE TABLE IF NOT EXISTS admins (
-                    id SERIAL PRIMARY KEY,
-                    username VARCHAR(50) UNIQUE NOT NULL,
-                    password_hash VARCHAR(255) NOT NULL,
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                );
-            `);
+
 
             await pool.query(`
                 CREATE TABLE IF NOT EXISTS projects (
@@ -59,9 +52,15 @@ const initDB = async (retries = 10, delay = 2000) => {
                     email VARCHAR(255) UNIQUE NOT NULL,
                     phone VARCHAR(50),
                     password_hash VARCHAR(255) NOT NULL,
-                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    role VARCHAR(20) DEFAULT 'user',
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
             `);
+            
+            // Safely add new columns if the table already existed
+            await pool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS role VARCHAR(20) DEFAULT 'user';`);
+            await pool.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;`);
 
             await pool.query(`
                 CREATE TABLE IF NOT EXISTS project_requests (
@@ -76,13 +75,7 @@ const initDB = async (retries = 10, delay = 2000) => {
                 );
             `);
 
-            // Check if default admin exists
-            const adminRes = await pool.query('SELECT * FROM admins WHERE username = $1', ['admin']);
-            if (adminRes.rows.length === 0) {
-                const hash = await bcrypt.hash('password123', 10);
-                await pool.query('INSERT INTO admins (username, password_hash) VALUES ($1, $2)', ['admin', hash]);
-                console.log('Default admin created (admin / password123)');
-            }
+
 
             console.log('Database initialized successfully.');
             return; // Success, exit retry loop
