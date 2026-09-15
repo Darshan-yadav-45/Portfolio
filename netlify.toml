@@ -49,8 +49,48 @@
   status = 200
 
 [[redirects]]
-  from = "/*.html"
-  to = "/frontend/pages/:splat.html"
+  from = "/about.html"
+  to = "/frontend/pages/about.html"
+  status = 200
+
+[[redirects]]
+  from = "/projects.html"
+  to = "/frontend/pages/projects.html"
+  status = 200
+
+[[redirects]]
+  from = "/project-details.html"
+  to = "/frontend/pages/project-details.html"
+  status = 200
+
+[[redirects]]
+  from = "/project-request.html"
+  to = "/frontend/pages/project-request.html"
+  status = 200
+
+[[redirects]]
+  from = "/skills.html"
+  to = "/frontend/pages/skills.html"
+  status = 200
+
+[[redirects]]
+  from = "/education.html"
+  to = "/frontend/pages/education.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/frontend/pages/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/login.html"
+  to = "/frontend/pages/login.html"
+  status = 200
+
+[[redirects]]
+  from = "/register.html"
+  to = "/frontend/pages/register.html"
   status = 200
 
 [[redirects]]
