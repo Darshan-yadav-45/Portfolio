@@ -95,12 +95,12 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://YOUR_RENDER_BACKEND_URL.onrender.com/api/:splat"
+  to = "https://portfoliobackend-1rcb.onrender.com/api/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/uploads/*"
-  to = "https://YOUR_RENDER_BACKEND_URL.onrender.com/uploads/:splat"
+  to = "https://portfoliobackend-1rcb.onrender.com/uploads/:splat"
   status = 200
   force = true
